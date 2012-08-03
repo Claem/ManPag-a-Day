@@ -1,11 +1,30 @@
 #!/usr/bin/env python
 
-import commands
-f = open('filelist', 'r')
-searchterm = f.readline().strip()
-f.close()
-print searchterm
+import commands 
+import xmlrpclib
+import datetime
+from wordpress_xmlrpc import Client, WordPressPost
+from wordpress_xmlrpc.methods.posts import NewPost
+from wordpress_xmlrpc import WordPressPost
 
-cmd = 'man %s' % (searchterm)
-s = commands.getoutput(cmd) #This line makes it a callable function.
-print(s)
+f = open('filelist', 'r') #opens the file I want to read
+searchterm = f.readline().strip() #reads the first liine and strips out whitespace.
+f.close() #closes the file, frees up memory.  the line the program read is now in short term memory.
+print searchterm #test, prints the searched term to CL.
+
+cmd = 'man %s' % (searchterm) #Defines the function I want to use.
+s = commands.getoutput(cmd) #This line makes it a callable.
+print(s) #This line calls it.
+
+
+client = Client('http://172.23.1.230/wordpress/xmlrpc.php', 
+                'AnonymousAdmin', 
+                'AiHMSvCGvN85Lkews6o6')
+
+post = WordPressPost()
+post.title = 'Test'
+post.content = 'This is a wonderful blog post about XML-RPC.'
+post.terms_names = {'category' : ['Manual Page a Day']}
+
+post.post_status = 'publish'
+client.call(NewPost(post)) 
