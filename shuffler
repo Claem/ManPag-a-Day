@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+import random #imports the shuffle module. The program can't shuffle if you don't tell it how to.
+f = open('filelist', 'r') #opens the file
+lines  = f.readlines() #reads the file
+f.close() #closes the file
+
+
+random.shuffle(lines) #shuffles the file. Because its already in RAM, you don't have to open it again to alter it.
+f = open('filelist', 'w') #opens it again, this time to read it.
+f.writelines(lines) #writes tot he file.  Specifically, OVERwrites the extisting file
+f.close() #closes the file.
+
+# Done!!!
+
