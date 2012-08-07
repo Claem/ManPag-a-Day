@@ -7,24 +7,27 @@ from wordpress_xmlrpc import Client, WordPressPost
 from wordpress_xmlrpc.methods.posts import NewPost
 from wordpress_xmlrpc import WordPressPost
 
-f = open('filelist', 'r') #opens the file I want to read
-searchterm = f.readline().strip() #reads the first liine and strips out whitespace.
-f.close() #closes the file, frees up memory.  the line the program read is now in short term memory.
-print searchterm #test, prints the searched term to CL.
+#opens the file I want to read
+f = open('filelist', 'r')
+#reads the first liine and strips out whitespace.
+searchterm = f.readline().strip()f.close() 
+#closes the file, frees up memory.the line  read is now in short term memory.
+f.close()
 
-cmd = 'man %s' % (searchterm) #Defines the function I want to use.
-s = commands.getoutput(cmd) #This line makes it a callable.
-print(s) #This line calls it.
+#Defines the function I want to use.
+cmd = 'man %s' % (searchterm)
+#This line makes it a callable.
+s = commands.getoutput(cmd)
 
-
+#xmlrpc info being passed through xmlrpc to the client. Verifies, locates, and authizes it. xmlrpc client, username, password
 client = Client('http://172.23.1.230/wordpress/xmlrpc.php', 
                 'AnonymousAdmin', 
                 'AiHMSvCGvN85Lkews6o6')
 
+#post/post. -- imported definitions from wordpresspost, they tell the client where to plug info in.  Other terms (searchterm, s) plugins of functions already defined. 'publish' tells the client to push it to publish and not just draft, last line pulls client info (xmlrpc, username, password) and uses it author the post through wordpress.  
 post = WordPressPost()
-post.title = 'Test'
-post.content = 'This is a wonderful blog post about XML-RPC.'
+post.title = searchterm
+post.content = s
 post.terms_names = {'category' : ['Manual Page a Day']}
-
 post.post_status = 'publish'
-client.call(NewPost(post)) 
+client.call(NewPost(post))
