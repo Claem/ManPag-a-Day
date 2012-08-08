@@ -8,10 +8,12 @@ from wordpress_xmlrpc.methods.posts import NewPost
 from wordpress_xmlrpc import WordPressPost
 
 #opens the file I want to read
-f = open('filelist', 'r')
-#reads the first liine and strips out whitespace.
-searchterm = f.readline().strip()f.close() 
-#closes the file, frees up memory.the line  read is now in short term memory.
+f = open('filelist','r')
+#reads the file and makes it callable
+newlist = f.readlines()
+#makes our searchterm callable, rewrites the in-ram list to be without it, and strips out the whitespace.
+searchterm = newlist.pop(0).strip()
+#closes the file, frees up memory. the newlist (sans searchterm) is now in memory.
 f.close()
 
 #Defines the function I want to use.
@@ -31,3 +33,12 @@ post.content = s
 post.terms_names = {'category' : ['Manual Page a Day']}
 post.post_status = 'publish'
 client.call(NewPost(post))
+
+#opens the file with write capabilities.
+#rewrites our permanent save file with new list(sans searchterm we just used)
+#closes the file.
+f = open('filelist', 'w')
+f.writelines(newlist)
+f.close() 
+
+#Congrats, we're done.  
