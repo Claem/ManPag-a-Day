@@ -1,0 +1,9 @@
+##Use this file to store your Wordpress authorizaton info.  This file is hidden from git so it doesn't accidentally get uploaded. 
+#The manpage program will pull these credentials to publish.
+
+url = http://mysqueal.wordpress.com/xmlrpc.php 
+username = exampleusername
+password = securepassword
+
+
+
