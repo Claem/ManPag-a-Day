@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+
+import os
+
+manpath = '/usr/share/man/man1'
+f = os.listdir(manpath)
+for string in f:
+    string.split('.')
+    print string.split('.')[0]
+    
+
