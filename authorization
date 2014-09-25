@@ -2,7 +2,7 @@
 #The manpage program will pull these credentials to publish.
 
 [authorization_info]
-url = http://mysqueal.wordpress.com/xmlrpc.php 
+url = http://blogname.wordpress.com/xmlrpc.php 
 username = exampleusername
 password = securepassword
 
