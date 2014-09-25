@@ -16,3 +16,4 @@ To install:
   ./shuffler
 
 Program can be run manually or by giving the task to crontab. 
+  ./manpage
