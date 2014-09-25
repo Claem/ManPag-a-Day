@@ -1,0 +1,13 @@
+A simple program designed to pick a random help topic and post it to your wordpress automatically.  Requires some 
+initial set-up with Wordpress & crontab; Works seamlessly and automatically afterwards. I reccommend running listgen during 
+first-time set-up so you get helpfiles tailored to what's on your system.
+
+To install:
+1. Create new directory:
+  mkdir ManPag-a-Day
+2. Clone this repo into it:
+  git clone 'URL'
+3. Run listgen to create your index of helpfiles 
+  ./listgen > filelist
+4. Run shuffler:
+  ./shuffler

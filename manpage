@@ -3,6 +3,7 @@
 import commands 
 import xmlrpclib
 import datetime
+import ConfigParser
 from wordpress_xmlrpc import Client, WordPressPost
 from wordpress_xmlrpc.methods.posts import NewPost
 from wordpress_xmlrpc import WordPressPost

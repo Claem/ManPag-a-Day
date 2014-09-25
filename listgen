@@ -7,5 +7,8 @@ f = os.listdir(manpath)
 for string in f:
     string.split('.')
     print string.split('.')[0]
+<<<<<<< HEAD
     
 
+=======
+>>>>>>> efd7f6e6fabb9b677537b8b9ff14c64c6b073c08
