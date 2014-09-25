@@ -3,11 +3,16 @@ initial set-up with Wordpress & crontab; Works seamlessly and automatically afte
 first-time set-up so you get helpfiles tailored to what's on your system.
 
 To install:
-1. Create new directory:
+1.Install the xmlrpc library:
+  pip install python-wordpress-xmlrpc
+2. Create new directory:
   mkdir ManPag-a-Day
-2. Clone this repo into it:
+3. Clone this repo into it:
   git clone 'URL'
-3. Run listgen to create your index of helpfiles 
+4. Run listgen to create your own index of helpfiles: 
   ./listgen > filelist
-4. Run shuffler:
+5. Run shuffler:
   ./shuffler
+6. Create a file where you'll store your credentials:
+  vim authorization
+  (You have to create this on yourself b/c we have git ignoring this file.)

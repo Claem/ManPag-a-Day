@@ -3,7 +3,7 @@
 import commands 
 import xmlrpclib
 import datetime
-import ConfigParser
+from ConfigParser import SafeConfigParser
 from wordpress_xmlrpc import Client, WordPressPost
 from wordpress_xmlrpc.methods.posts import NewPost
 from wordpress_xmlrpc import WordPressPost
@@ -22,10 +22,13 @@ cmd = 'man %s' % (searchterm)
 #This line makes it a callable.
 s = commands.getoutput(cmd)
 
-#xmlrpc info being passed through xmlrpc to the client. Verifies, locates, and authizes it. xmlrpc client, username, password
-client = Client('http://172.23.1.230/wordpress/xmlrpc.php', 
-                'AnonymousAdmin', 
-                'AiHMSvCGvN85Lkews6o6')
+#Grabs the authorization info for publishing. For security, this is stored in a sepatate file and hidden from git.  These lines grab that information and parses it.
+parser = SafeConfigParser()
+parser.read('authorization')
+url = parser.get('authorization_info','url' )
+username = parser.get('authorization_info', 'username')
+password = parser.get('authorization_info', 'password')
+client = Client(url, username, password)
 
 #post/post. -- imported definitions from wordpresspost, they tell the client where to plug info in.  Other terms (searchterm, s) plugins of functions already defined. 'publish' tells the client to push it to publish and not just draft, last line pulls client info (xmlrpc, username, password) and uses it author the post through wordpress.  
 post = WordPressPost()
@@ -34,6 +37,7 @@ post.content = s
 post.terms_names = {'category' : ['Manual Page a Day']}
 post.post_status = 'publish'
 client.call(NewPost(post))
+
 
 #opens the file with write capabilities.
 #rewrites our permanent save file with new list(sans searchterm we just used)
