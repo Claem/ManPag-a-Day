@@ -7,12 +7,12 @@ To install:
   pip install python-wordpress-xmlrpc
 2. Create new directory:
   mkdir ManPag-a-Day
-3. Clone this repo into it:
+3.Clone this repo into it:
   git clone 'URL'
-4. Run listgen to create your own index of helpfiles: 
+4.Update your verification info in authorization file.
+5.Run listgen to create your own index of helpfiles: 
   ./listgen > filelist
-5. Run shuffler:
+6.Run shuffler:
   ./shuffler
-6. Create a file where you'll store your credentials:
-  vim authorization
-  (You have to create this on yourself b/c we have git ignoring this file.)
+
+Program can be run manually or by giving the task to crontab. 
