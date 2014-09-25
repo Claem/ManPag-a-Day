@@ -1,0 +1,6 @@
+A simple program designed to pick a random help topic and post it to your wordpress automatically.  Requires some initial set-up with Wordpress & crontab; Works seamlessly and automatically afterwards.
+Warning: there is currently no filter to avoid repeats at the moment.  (Will fix on a later date.)
+
+To install:
+Create new directory: mkdir ManPag-a-Day
+Clone this repo into it: git clone URL
